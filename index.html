@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <script type="module" src="main.js" defer></script>
+      <link rel="stylesheet" href="style.css" />
+      <title>Document</title>
+   </head>
+   <body>
+      <div id="form-container">
+         <form id="workout-form">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" required />
+            <label for="type">Workout type</label>
+            <select id="type" name="type" required>
+               <option value="" selected disabled hidden>
+                  Pick a workout type
+               </option>
+               <option value="strength">Strength</option>
+               <option value="cardio">Cardio</option>
+               <option value="crossfit">Crossfit</option>
+               <option value="fridgelaps">Fridgelaps</option>
+            </select>
+            <label for="duration">Duration in minutes</label>
+            <input type="number" name="duration" id="duration" required />
+            <label for="intensity">Intensity</label>
+            <select id="intensity" name="intensity" required>
+               <option value="" selected disabled hidden>
+                  Pick an intensity
+               </option>
+               <option value="low">Low</option>
+               <option value="medium">Medium</option>
+               <option value="high">High</option>
+            </select>
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="notes" rows="5" name="notes"></textarea>
+            <span>
+               <label for="favourite">Favourite</label>
+               <input type="checkbox" id="favourite" name="favourite" />
+            </span>
+            <input type="submit"/ >
+         </form>
+      </div>
+      <div id="filter-container">
+         <label for="filter">Filter by type</label>
+         <select id="filter" name="filter">
+            <option value="" selected disabled hidden>
+               Pick a type to filter by
+            </option>
+            <option value="strength">Strength</option>
+            <option value="cardio">Cardio</option>
+            <option value="crossfit">Crossfit</option>
+            <option value="fridgelaps">Fridgelaps</option>
+         </select>
+         <button id="filter-button">Filter</button>
+         <button id="reset-button">Reset</button>
+      </div>
+      <div id="workout-container"></div>
+   </body>
+</html>
