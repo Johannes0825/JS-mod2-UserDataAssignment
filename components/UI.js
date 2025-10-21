@@ -1,41 +1,54 @@
 import { fetchWorkouts, deleteWorkout } from "./localstorage.js";
-import { updateDisplayElements } from "../main.js";
 
 const workoutContainer = document.getElementById("workout-container");
+const filterSelect = document.getElementById("filter");
+const filterBtn = document.getElementById("filter-button");
+const resetBtn = document.getElementById("reset-button");
+const sortSelect = document.getElementById("sort");
+const sortBtn = document.getElementById("sort-button");
+
+const dateInput = document.getElementById("date");
+const typeInput = document.getElementById("type");
+const durationInput = document.getElementById("duration");
+const intensityInput = document.getElementById("intensity");
+const notesInput = document.getElementById("notes");
+const favouriteInput = document.getElementById("favourite");
 
 const makeWorkoutCard = (object, id) => {
+   const { date, type, duration, intensity, notes, favourite } = object;
+
    const card = document.createElement("div");
    card.classList.add("card");
    card.id = id;
 
    const dateEl = document.createElement("p");
-   dateEl.textContent = object.date;
+   dateEl.textContent = date;
    card.append(dateEl);
 
    const typeEl = document.createElement("p");
-   typeEl.textContent = object.type;
+   typeEl.textContent = type;
    card.append(typeEl);
 
    const durationEl = document.createElement("p");
-   durationEl.textContent = object.duration;
+   durationEl.textContent = duration;
    card.append(durationEl);
 
    const intesityEl = document.createElement("p");
-   intesityEl.textContent = object.intensity;
+   intesityEl.textContent = intensity;
    card.append(intesityEl);
 
    const notesEl = document.createElement("p");
-   notesEl.textContent = object.notes;
+   notesEl.textContent = notes;
    card.append(notesEl);
 
-   if (object.favourite === "on") {
+   if (favourite === "on") {
       const favouriteEl = document.createElement("p");
       favouriteEl.textContent = "favourite";
       card.append(favouriteEl);
    }
 
    const deleteBtn = document.createElement("button");
-   deleteBtn.textContent = "delete";
+   deleteBtn.textContent = "Delete";
    card.append(deleteBtn);
    deleteBtn.addEventListener("click", () => {
       console.log(id);
@@ -43,13 +56,68 @@ const makeWorkoutCard = (object, id) => {
       updateDisplayElements();
    });
 
+   const editBtn = document.createElement("button");
+   editBtn.textContent = "Edit";
+   card.append(editBtn);
+   editBtn.addEventListener("click", () => {
+      dateInput.value = date;
+      typeInput.value = type;
+      durationInput.value = duration;
+      intensityInput.value = intensity;
+      notesInput.value = notes;
+      favouriteInput.checked = favourite;
+
+      deleteWorkout(id);
+   });
+
    workoutContainer.append(card);
 };
 
-export const renderUI = (workoutsToDisplay) => {
+export const updateDisplayElements = () => {
+   const allWorkouts = fetchWorkouts();
+   const filterValue = filterSelect.value;
+   const sortValue = sortSelect.value;
+   console.log(filterValue);
+
+   let workoutsToDisplay;
+
+   if (filterValue) {
+      workoutsToDisplay = allWorkouts.filter(
+         (workout) => workout.type === filterValue
+      );
+   } else if (sortValue === "ascending-date") {
+      workoutsToDisplay = allWorkouts.sort(
+         (a, b) => new Date(b.date) - new Date(a.date)
+      );
+   } else if (sortValue === "descending-date") {
+      workoutsToDisplay = allWorkouts.sort(
+         (a, b) => new Date(a.date) - new Date(b.date)
+      );
+   } else {
+      workoutsToDisplay = allWorkouts;
+   }
+
+   renderUI(workoutsToDisplay);
+   console.log(workoutsToDisplay);
+};
+
+const renderUI = (workoutsToDisplay) => {
    workoutContainer.innerHTML = "";
 
    for (const workout of workoutsToDisplay) {
       makeWorkoutCard(workout, workout.id);
    }
 };
+
+filterBtn.addEventListener("click", () => {
+   updateDisplayElements();
+});
+
+sortBtn.addEventListener("click", () => {
+   updateDisplayElements();
+});
+
+resetBtn.addEventListener("click", () => {
+   filterSelect.value = null;
+   updateDisplayElements();
+});

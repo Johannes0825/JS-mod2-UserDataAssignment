@@ -1,5 +1,3 @@
-// export const readAll = () => {};
-
 export const storeWorkout = (workout) => {
    localStorage.setItem(workout.id, JSON.stringify(workout));
 };
@@ -14,18 +12,6 @@ export const fetchWorkouts = () => {
    return workouts;
 };
 
-// export const getAllWorkouts = () => {
-//    const workouts = [];
-//    for (const key in localStorage) {
-//       localStorage.getItem(key);
-//       workouts.push(key);
-//    }
-//    return workouts;
-// };
 export const deleteWorkout = (id) => {
    localStorage.removeItem(id);
-};
-
-const editWorkout = (id) => {
-   let workout = localStorage.getItem(id);
 };

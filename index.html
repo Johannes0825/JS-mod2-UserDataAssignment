@@ -39,21 +39,32 @@
                <label for="favourite">Favourite</label>
                <input type="checkbox" id="favourite" name="favourite" />
             </span>
-            <input type="submit"/ >
+            <div id="submit-container">
+               <input type="submit"/ >
+               <input type="reset" />
+            </div>
          </form>
       </div>
-      <div id="filter-container">
+      <div class="container">
          <label for="filter">Filter by type</label>
          <select id="filter" name="filter">
-            <option value="" selected disabled hidden>
-               Pick a type to filter by
-            </option>
+            <option value="" selected disabled hidden>Filter type...</option>
             <option value="strength">Strength</option>
             <option value="cardio">Cardio</option>
             <option value="crossfit">Crossfit</option>
             <option value="fridgelaps">Fridgelaps</option>
          </select>
          <button id="filter-button">Filter</button>
+         <button id="reset-button">Reset</button>
+      </div>
+      <div class="container">
+         <label for="sort">Sort by date</label>
+         <select id="sort" name="sort">
+            <option value="" selected disabled hidden>Sort date...</option>
+            <option value="ascending-date">Ascending</option>
+            <option value="descending-date">Descending</option>
+         </select>
+         <button id="sort-button">Sort</button>
          <button id="reset-button">Reset</button>
       </div>
       <div id="workout-container"></div>

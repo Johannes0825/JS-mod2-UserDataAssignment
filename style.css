@@ -27,10 +27,17 @@ form {
    flex-wrap: wrap;
 }
 
+#submit-container {
+   display: flex;
+   justify-content: center;
+   gap: 30px;
+}
+
 .card {
    border: 1px solid black;
    padding: 10px;
-   max-width: 200px;
+   width: 300px;
+   text-align: center;
 }
 
 .card p {
@@ -39,7 +46,7 @@ form {
    overflow-wrap: break-word;
 }
 
-#filter-container {
+.container {
    margin: 40px;
    display: flex;
    justify-content: center;
