@@ -1,54 +1,195 @@
-* {
+/* General Body Styles */
+body {
+   font-family: "Arial", sans-serif;
+   background-color: #1a1a1a; /* Dark background */
+   color: #e0e0e0; /* Light text */
    margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Poppins", sans-serif;
-}
-
-#form-container {
+   padding: 20px;
+   line-height: 1.6;
    display: flex;
    flex-direction: column;
    align-items: center;
+   min-height: 100vh;
+   box-sizing: border-box;
 }
 
-form {
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
-   width: 300px;
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   color: #bb86fc; /* Purple accent for headings */
+   margin-bottom: 15px;
+   text-align: center;
+}
+
+/* Links */
+a {
+   color: #03dac6; /* Teal accent for links */
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+/* Buttons */
+button {
+   background-color: #03dac6; /* Teal button background */
+   color: #1a1a1a; /* Dark text on buttons */
+   border: none;
+   padding: 10px 20px;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: background-color 0.3s ease;
+   margin: 5px;
+}
+
+button:hover {
+   background-color: #018786; /* Darker teal on hover */
+}
+
+button:disabled {
+   background-color: #555;
+   cursor: not-allowed;
+}
+
+/* Forms and Inputs */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="submit"],
+input[type="reset"],
+textarea,
+select {
+   background-color: #333; /* Dark input background */
+   color: #e0e0e0; /* Light text in inputs */
+   border: 1px solid #555;
+   padding: 10px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+   width: calc(100% - 22px); /* Account for padding and border */
+   box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+   color: #aaa;
+}
+
+/* Containers and Sections */
+.container {
+   background-color: #2a2a2a; /* Slightly lighter dark background for containers */
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   padding: 30px;
+   margin: 50px 0;
+   width: 100%;
+   max-width: 800px;
+   box-sizing: border-box;
+}
+
+.card {
+   background-color: #414141;
+   border-radius: 8px;
+   padding: 20px;
+   border: 1px solid #03dac6;
+   margin-bottom: 15px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific UI elements (assuming common class names) */
+#user-data-display,
+#workout-list {
    margin-top: 20px;
 }
 
 #workout-container {
-   margin: 40px;
    display: flex;
-   justify-content: center;
-   gap: 30px;
    flex-wrap: wrap;
-}
-
-#submit-container {
-   display: flex;
    justify-content: center;
    gap: 30px;
+   max-width: 1000px;
 }
 
-.card {
-   border: 1px solid black;
-   padding: 10px;
-   width: 300px;
+#form-container {
+   max-width: 500px;
+}
+
+.workout-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px 0;
+   border-bottom: 1px solid #444;
+}
+
+.workout-item:last-child {
+   border-bottom: none;
+}
+
+.workout-details {
+   flex-grow: 1;
+}
+
+.workout-actions button {
+   margin-left: 10px;
+}
+
+.form-group {
+   margin-bottom: 15px;
+}
+
+.form-group label {
+   display: block;
+   margin-bottom: 5px;
+   color: #bb86fc;
+}
+
+/* Utility Classes */
+.text-center {
    text-align: center;
 }
 
-.card p {
-   margin-bottom: 5px;
-   max-width: 100%;
-   overflow-wrap: break-word;
+.hidden {
+   display: none;
 }
 
-.container {
-   margin: 40px;
-   display: flex;
-   justify-content: center;
-   gap: 30px;
+.error-message {
+   color: #cf6679; /* Red for errors */
+   margin-top: 10px;
+   text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+   body {
+      padding: 10px;
+   }
+
+   .container {
+      padding: 20px;
+   }
+
+   button {
+      width: 100%;
+      margin: 5px 0;
+   }
+
+   .workout-item {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   .workout-actions {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+   }
 }
