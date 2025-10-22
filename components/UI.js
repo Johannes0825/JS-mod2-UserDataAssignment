@@ -1,18 +1,20 @@
 import { fetchWorkouts, deleteWorkout } from "./localstorage.js";
+import { dom } from "./dom.js";
 
-const workoutContainer = document.getElementById("workout-container");
-const filterSelect = document.getElementById("filter");
-const filterBtn = document.getElementById("filter-button");
-const resetBtn = document.getElementById("reset-button");
-const sortSelect = document.getElementById("sort");
-const sortBtn = document.getElementById("sort-button");
-
-const dateInput = document.getElementById("date");
-const typeInput = document.getElementById("type");
-const durationInput = document.getElementById("duration");
-const intensityInput = document.getElementById("intensity");
-const notesInput = document.getElementById("notes");
-const favouriteInput = document.getElementById("favourite");
+const {
+   workoutContainer,
+   filterSelect,
+   filterBtn,
+   resetBtn,
+   sortSelect,
+   sortBtn,
+   dateInput,
+   typeInput,
+   durationInput,
+   intensityInput,
+   notesInput,
+   favouriteInput,
+} = dom;
 
 const makeWorkoutCard = (object, id) => {
    const { date, type, duration, intensity, notes, favourite } = object;
@@ -83,7 +85,6 @@ export const updateDisplayElements = () => {
    const allWorkouts = fetchWorkouts();
    const filterValue = filterSelect.value;
    const sortValue = sortSelect.value;
-   console.log(filterValue);
 
    let workoutsToDisplay;
 
