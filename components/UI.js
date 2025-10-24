@@ -86,22 +86,18 @@ export const updateDisplayElements = () => {
    const filterValue = filterSelect.value;
    const sortValue = sortSelect.value;
 
-   let workoutsToDisplay;
+   let workoutsToDisplay = allWorkouts;
 
    if (filterValue) {
       workoutsToDisplay = allWorkouts.filter(
          (workout) => workout.type === filterValue
       );
-   } else if (sortValue === "ascending-date") {
-      workoutsToDisplay = allWorkouts.sort(
-         (a, b) => new Date(b.date) - new Date(a.date)
-      );
+   }
+
+   if (sortValue === "ascending-date") {
+      workoutsToDisplay.sort((a, b) => new Date(b.date) - new Date(a.date));
    } else if (sortValue === "descending-date") {
-      workoutsToDisplay = allWorkouts.sort(
-         (a, b) => new Date(a.date) - new Date(b.date)
-      );
-   } else {
-      workoutsToDisplay = allWorkouts;
+      workoutsToDisplay.sort((a, b) => new Date(a.date) - new Date(b.date));
    }
 
    renderUI(workoutsToDisplay);
@@ -124,7 +120,10 @@ sortBtn.addEventListener("click", () => {
    updateDisplayElements();
 });
 
-resetBtn.addEventListener("click", () => {
-   filterSelect.value = null;
-   updateDisplayElements();
+resetBtn.forEach((btn) => {
+   btn.addEventListener("click", () => {
+      filterSelect.value = "";
+      sortSelect.value = "";
+      updateDisplayElements();
+   });
 });

@@ -2,7 +2,7 @@ export const dom = {
    workoutContainer: document.getElementById("workout-container"),
    filterSelect: document.getElementById("filter"),
    filterBtn: document.getElementById("filter-button"),
-   resetBtn: document.getElementById("reset-button"),
+   resetBtn: document.querySelectorAll(".resetBtn"),
    sortSelect: document.getElementById("sort"),
    sortBtn: document.getElementById("sort-button"),
    dateInput: document.getElementById("date"),
