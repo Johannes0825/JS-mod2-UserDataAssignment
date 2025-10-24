@@ -14,6 +14,7 @@ const {
    intensityInput,
    notesInput,
    favouriteInput,
+   minutesEl,
 } = dom;
 
 const makeWorkoutCard = (object, id) => {
@@ -81,6 +82,14 @@ const makeWorkoutCard = (object, id) => {
    workoutContainer.append(card);
 };
 
+const getTotalMinutes = (workouts) => {
+   const totalMinutes = workouts
+      .map((d) => parseFloat(d.duration))
+      .reduce((acc, num) => acc + num, 0);
+
+   minutesEl.textContent = totalMinutes;
+};
+
 export const updateDisplayElements = () => {
    const allWorkouts = fetchWorkouts();
    const filterValue = filterSelect.value;
@@ -101,6 +110,7 @@ export const updateDisplayElements = () => {
    }
 
    renderUI(workoutsToDisplay);
+   getTotalMinutes(workoutsToDisplay);
    console.log(workoutsToDisplay);
 };
 

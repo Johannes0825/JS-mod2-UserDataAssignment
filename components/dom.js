@@ -11,4 +11,5 @@ export const dom = {
    intensityInput: document.getElementById("intensity"),
    notesInput: document.getElementById("notes"),
    favouriteInput: document.getElementById("favourite"),
+   minutesEl: document.getElementById("minutesEl"),
 };
